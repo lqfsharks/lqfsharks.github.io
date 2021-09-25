@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/09/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>linux 常用命令</title>
+    <url>/2021/09/25/linux/</url>
+    <content><![CDATA[<p>1、查看IP地址 ifconfig -a / ifconfig | grep “inet”</p>
+<p>2、查看port被哪个进程占用   lsof -i:port / netstat -tunlp|grep 端口号</p>
+<p>3、查看所有进程  ps -a</p>
+<p>4、查看进程信息  ps -p port（根据端口号）/ ps -ef | grep 进程名（根据进程名）</p>
+<p>（1）查看进程占用了哪些端口 netstat -nltp |grep pid</p>
+<p>5、防火墙操作</p>
+<p>（1）查看：firewall-cmd –zone=public –query-port=80/tcp</p>
+<p>（2）添加：firewall-cmd –zone=public –add-port=80/tcp –permanent （–permanent永久生效，没有此参数重启后失效）</p>
+<p>firewall-cmd –zone=public –add-port=1000-2000/tcp –permanent</p>
+<p>（3）重新载入：firewall-cmd –reload</p>
+<p>（4）删除：firewall-cmd –zone=public –remove-port=80/tcp –permanent</p>
+<p>（5）开启防火墙：systemctl start firewalld.service</p>
+<p>（6）关闭防火墙：systemctl stop firewalld.service</p>
+<p>（7）查看运行状态：firewall-cmd –state //running 表示运行</p>
+<p>6、改变文件读写权限<br><a href="https://www.cnblogs.com/huchong/p/9075201.html">https://www.cnblogs.com/huchong/p/9075201.html</a></p>
+<p>7、查看服务</p>
+<p>（1）查看所有服务：systemctl list-units –type service</p>
+<p>（2）查看指定服务：systemctl | grep apache2</p>
+<p>（3）查看正在运行的服务：systemctl | grep running</p>
+<p>（4）查看开机启动服务：systemctl list-unit-files | grep enabled</p>
+<p>8、查看软件安装路径</p>
+<p>（1）查看是否已安装软件：rpm -qa |grep mysql</p>
+<p>（2）列出安装软件的安装路径：rpm -ql xxx</p>
+<p>（3）综上，查看所有安装包的路径：rpm -qal |grep mysql</p>
+<p>其他：Which命令是通过 PATH环境变量查找可执行文件路径，用于查找指向这个命令所在的文件夹；whereis<br>备忘：<a href="https://www.cnblogs.com/whowhere/p/10550623.html">https://www.cnblogs.com/whowhere/p/10550623.html</a></p>
+<p>9、MAC查看软件安装路径</p>
+<p>（1）brew list 查看全部安装路径</p>
+<p>（2）brew list 软件名 查看指定软件安装路径</p>
+<p>brew使用方法：<a href="https://sspai.com/post/56009#toc_5">https://sspai.com/post/56009#toc_5</a></p>
+<p>10、查找文件是否存在：find / -name ‘test.py’</p>
+<p>查找文件夹是否存在：find / -type d  -name ‘test_dictionary’</p>
+<p>11、adb查看进程信息</p>
+<p>（1）adb shell “ps |grep keyword”</p>
+<p>12、pm 相关操作</p>
+<p>（1）pm list packages |grep keyword（查看安装包）</p>
+<p>其他用法：<a href="https://blog.csdn.net/wxd_csdn_2016/article/details/103145753">https://blog.csdn.net/wxd_csdn_2016/article/details/103145753</a></p>
+<p>（2）获取包名的地址：adb shell pm path com.xx.xx</p>
+<p>（3）删除包：adb shell rm apk路径</p>
+<p>（4）删除与包相关的所有数据，清除数据和缓存：adb shell pm clear <PACKAGE><br>   其他：<a href="https://blog.csdn.net/weixin_39812186/article/details/117480668">https://blog.csdn.net/weixin_39812186/article/details/117480668</a></p>
+<p>（5）删除系统APP：pm uninstall -k –user 0 应用包名</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Elasticsearch常见错误</title>
+    <url>/2021/09/25/Elasticsearch%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>一、启动失败</p>
+<p>the default discovery settings are unsuitable for production use; at least one of discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes must be configured</p>
+<p>解决办法：</p>
+<p>1、修改elasticsearch.yml，放开node.name注释，可更改名称 node.name: node-1</p>
+<p>2、配置以下三者，最少其一 discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes</p>
+<p>如cluster.initial_master_nodes: [“node-1”] 这里的node-1为node-name配置的值</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Mongodb 常见错误</title>
+    <url>/2021/09/25/Mongodb-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>一、mongodb无法启动，“Job for mongod.service failed (code=exited, status=14)”</p>
+<p>1、journalctl -xe：查看 systemctl start 无法启动而产生的错误日志</p>
+<p>2、sealert -l xxx：查看selinux产生的具体错误信息。提示：SELinux is preventing mongod from unlink access on the sock_file mongodb-27017.sock.</p>
+<p>3、分析原因：mongodb-27017.sock缺少相应的权限</p>
+<p>4、解决办法<br>（1）赋予mongodb-27017.sock相应权限（未验证）<br>（2）直接删除mongodb-27017.sock（已验证，也许每次启动mongodb的时候都会报错，都要删除该文件才能正常运行，方法一才是长久解决之道）</p>
+<p>备忘：<a href="https://stackoverflow.com/questions/29813648/failed-to-unlink-socket-file-error-in-mongodb-3-0">https://stackoverflow.com/questions/29813648/failed-to-unlink-socket-file-error-in-mongodb-3-0</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>MySql基本使用</title>
+    <url>/2021/09/25/MySql%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>1、查看服务是否已启动 systemctl status mysqld</p>
+<p>2、启动服务 systemctl start mysqld</p>
+<p>3、连接/登录  mysql -h localhost -u root</p>
+<p>4、查看数据库  show databases</p>
+<p>5、进入数据库 use databaseName</p>
+<p>6、查看表 show tables</p>
+<p>7、查看表结构  describe tableName</p>
+<p>8、允许远程连接</p>
+<p>（1）GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root‘@’%’ WITH GRANT OPTION; flush privileges;</p>
+<p>（2）ERROR 1410 (42000): You are not allowed to create a user with GRANT 解决办法：</p>
+<pre><code>1）使用mysql 数据库： mysql &gt; use mysql; 
+
+2）特定用户的host 修改：  mysql &gt; update user set host=&#39;%&#39; where user=&#39;root&#39;;
+</code></pre>
+<p>9、Navicat连接虚拟机（centOS）中的Mysql</p>
+<pre><code>防火墙开放http用的80端口和连接MySql的3306端口。
+</code></pre>
+<p> 一、数据库操作（DDL）</p>
+<p> 1、查看所有数据库  show databases</p>
+<p> 2、查看当前数据库  select database()</p>
+<p> 3、创建数据库  CREATE DATABASE test_db</p>
+<p> 4、删除数据库 DROP DATABASE test_db</p>
+<p> 二、表操作（DML）</p>
+<p> 1、创建表</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> `<span class="keyword">user</span>`(</span><br><span class="line">   `id` <span class="type">INT</span> AUTO_INCREMENT,</span><br><span class="line">   `name` <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">default</span> ‘aa’,</span><br><span class="line">   `password` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>2、删除表：drop table, delete from table, truncate table（删除数据，保留结构）</p>
+<p>3、插入记录 insert into tableName(col1, col2) values()</p>
+<p>4、删除记录  delete from table where </p>
+<p>5、修改记录  update tableName set col=? where col=?</p>
+<p>6、添加列 alter table test_table add column test_column int not null auto_increment</p>
+<p>7、删除列 alter table test_table drop column test_column</p>
+<p>8、修改列</p>
+<p>（1）修改某一列的字段长度(例如本来是30字节改为50字节长)  alter table test_table modify column test_column varchar(50);</p>
+<p>（2）完全修改某一列（假设原本列名是test1_column,类型是int） alter table test_table change column test1_column test_column varchar(30);</p>
+<p>9、查看表结构 describe 表名   show create table tableName（查看建表语句）</p>
+<p>三、约束<br>1、外键约束<br>（1）从表的外键约束随同主表一起删除或更新  ON DELETE CASCADE ON UPDATE CASCADE<br>（2）外键约束删除主表：先删从表再删主表 或 解除约束 或 建表的时候指定伴随删除  </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>git 常用命令</title>
+    <url>/2021/09/25/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>一、撤销操作</p>
+<p>（1）撤销工作区修改</p>
+<pre><code>git checkout — 文件名
+    
+git checkout . （撤销所有修改）
+    
+    
+</code></pre>
+<p>（2）撤销暂存区的add</p>
+<pre><code>git reset HEAD 文件名（如果不跟文件名就是撤销上次全部add）
+    
+</code></pre>
+<p>（3）撤销commit</p>
+<pre><code>git reset —hard commitId
+</code></pre>
+<p>（4）取消跟踪某个文件</p>
+<pre><code>git rm —cached 文件名
+    
+</code></pre>
+<p>（5）清除未跟踪文件夹</p>
+<pre><code>git clean -n: 查看将要被删除的文件，并不实际删除文件
+    
+git clean -f: 删除当前工作面临下的未跟踪文件，但不删除文件夹
+    
+git clean -df: 删除当前工作面临下的未跟踪文件以及文件夹
+</code></pre>
+<p>二、分支</p>
+<p>（1）删除远程分支</p>
+<pre><code>git push [远程名]：[远程分支名]
+    
+</code></pre>
+<p>（2）查看本地、远程分支</p>
+<pre><code>git branch git branch -a
+    
+</code></pre>
+<p>（3）推送本地分支到远程</p>
+<pre><code>git push origin 分支名
+    
+</code></pre>
+<p>（4）关联分支</p>
+<pre><code>git branch —set-upstream-to=origin/远程分支名  本地分支名
+    
+</code></pre>
+<p>（5）合并分支</p>
+<pre><code>git merge 被合并的分支名
+    
+</code></pre>
+<p>（6）推送本地新分支到远程并追踪（远程当前并不存在该分支）</p>
+<pre><code>git push -u origin 分支名
+</code></pre>
+<p>三、追踪</p>
+<p>（1）删除未追踪的文件</p>
+<h1 id="删除-untracked-files"><a href="#删除-untracked-files" class="headerlink" title="删除 untracked files"></a>删除 untracked files</h1><p>git clean -f</p>
+<h1 id="连-untracked-的目录也一起删掉"><a href="#连-untracked-的目录也一起删掉" class="headerlink" title="连 untracked 的目录也一起删掉"></a>连 untracked 的目录也一起删掉</h1><p>git clean -fd</p>
+<h1 id="连-gitignore-的untrack-文件-目录也一起删掉-（慎用，一般这个是用来删掉编译出来的-o之类的文件用的）"><a href="#连-gitignore-的untrack-文件-目录也一起删掉-（慎用，一般这个是用来删掉编译出来的-o之类的文件用的）" class="headerlink" title="连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）"></a>连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）</h1><p>git clean -xfd</p>
+<h1 id="在用上述-git-clean-前，墙裂建议加上-n-参数来先看看会删掉哪些文件，防止重要文件被误删"><a href="#在用上述-git-clean-前，墙裂建议加上-n-参数来先看看会删掉哪些文件，防止重要文件被误删" class="headerlink" title="在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删"></a>在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删</h1><p>git clean -nxfd</p>
+<p>git clean -nf</p>
+<p>git clean -nfd</p>
+<p>（2）解除追踪已追踪的文件</p>
+<p>  git rm –cached 文件名 （如果是目录名，后面跟个-r）</p>
+]]></content>
+  </entry>
+</search>
